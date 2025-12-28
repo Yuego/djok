@@ -1,0 +1,46 @@
+[build-system]
+requires = ['setuptools']
+build-backend = 'setuptools.build_meta'
+
+[tool.setuptools.packages.find]
+where = ['.']
+include = [
+    'djok',
+    'djok.*',
+]
+exclude = ['tests*']
+
+[tool.setuptools.dynamic]
+version = { attr = 'djok.__version__' }
+
+[project]
+name = 'djok'
+description = 'Make Django some OK'
+authors = [
+    { name = 'Artem Vlasov', email = 'root@proscript.ru' },
+]
+maintainers = [
+    { name = 'Artem Vlasov', email = 'root@proscript.ru' },
+]
+readme = 'README.md'
+
+
+requires-python = '>= 3.10'
+
+dependencies = [
+
+]
+
+dynamic = [
+    'version',
+]
+
+classifiers = [
+    'Development Status :: 4 - Beta',
+    'Intended Audience :: Developers',
+    'Natural Language :: Russian',
+    'Programming Language :: Python',
+]
+
+[project.urls]
+Repository = 'https://github.com/Yuego/djok/'
