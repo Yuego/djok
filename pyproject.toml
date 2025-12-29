@@ -27,9 +27,9 @@ readme = 'README.md'
 
 requires-python = '>= 3.10'
 
-dependencies = [
+dependencies = []
 
-]
+build_dependencies = []
 
 dynamic = [
     'version',
