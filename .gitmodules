@@ -1,0 +1,3 @@
+[submodule "git-hooks"]
+	path = git-hooks
+	url = git@github.com-yuego:HPT-SU/git-hooks.git
