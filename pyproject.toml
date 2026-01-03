@@ -13,6 +13,9 @@ exclude = ['tests*']
 [tool.setuptools.dynamic]
 version = { attr = 'djok.__version__' }
 
+[tool.hpt_builder]
+dependencies = []
+
 [project]
 name = 'djok'
 description = 'Make Django some OK'
@@ -29,7 +32,7 @@ requires-python = '>= 3.10'
 
 dependencies = []
 
-build_dependencies = []
+
 
 dynamic = [
     'version',
