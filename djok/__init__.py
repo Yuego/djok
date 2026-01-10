@@ -1,2 +1,3 @@
 __version__ = "0.1.0"
-__build__ = 25
+__suffix__ = "-r"
+__build__ = 26
