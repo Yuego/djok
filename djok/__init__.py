@@ -1,3 +1,3 @@
-__version__ = "0.1.3"
-__suffix__ = None
-__build__ = 0
+from .version import version, build
+
+__version__ = f'{version}.{build}'
