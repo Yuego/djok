@@ -1,3 +1,3 @@
 version = "0.1.3"
-suffix = None
-build = 0
+suffix = "-r"
+build = 1
