@@ -27,19 +27,22 @@ def country_flag(country_code: str, css_class: str = 'icon', title: str = '') ->
 
     Если country_code пуст — возвращает прочерк.
     Если title не передан — используется русское имя страны (для tooltip).
+
+    Спрайт грузится лениво в base.html (см. блок про flags.svg). До инжекта
+    SVG-элементы пустые (прозрачные). Поэтому ссылка на symbol — внутренняя
+    (`#ru`), без URL.
     """
     if not country_code:
         return mark_safe('<span class="text-body-secondary">—</span>')
 
     code = country_code.lower().strip()
-    sprite_url = static('frontend/icons/flags.svg')
     label = title or _country_name(country_code)
 
     return format_html(
         '<svg class="{}" role="img" aria-label="{}" title="{}">'
-        '<use xlink:href="{}#{}"></use>'
+        '<use xlink:href="#{}"></use>'
         '</svg>',
-        css_class, label, label, sprite_url, code,
+        css_class, label, label, code,
     )
 
 
