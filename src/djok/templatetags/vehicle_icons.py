@@ -108,3 +108,12 @@ def doc_type_icon(name: str, css_class: str = 'icon', label: str = '') -> str:
     if not name:
         return ''
     return _hpt_svg(name.lower(), css_class=css_class, label=label or name)
+
+
+@register.simple_tag
+def vehicle_icon(name: str, css_class: str = 'icon', label: str = '') -> str:
+    """SVG-иконка vehicle-taxonomy: marka, commercial-name, model, modifications."""
+    if not name:
+        return ''
+    sid = name if name.startswith('vehicle-') else f'vehicle-{name}'
+    return _hpt_svg(sid, css_class=css_class, label=label or sid)
