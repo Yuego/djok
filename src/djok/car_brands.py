@@ -141,13 +141,38 @@ def normalize_brand(value: str) -> str:
 
 
 def brand_id(value: str) -> str:
-    """Возвращает slug PNG-иконки бренда, либо ''."""
+    """Возвращает slug PNG-иконки бренда, либо ''.
+
+    Алгоритм:
+      1. Точное совпадение в BRAND_IDS.
+      2. Алиас → BRAND_IDS.
+      3. Префиксный поиск от длинного к короткому: 'alfa-romeo-156' →
+         'alfa-romeo' → 'alfa'. Возвращаем первый найденный.
+
+    Префиксный шаг покрывает случаи «бренд + модель» в одном поле:
+    'BMW X5' → 'bmw', 'Mercedes-Benz C-Class' → 'mercedes-benz'.
+    """
     s = normalize_brand(value)
     if not s:
         return ''
-    if s in BRAND_IDS:
-        return s
-    alias = _ALIASES.get(s)
-    if alias and alias in BRAND_IDS:
-        return alias
+
+    def _resolve(candidate: str) -> str:
+        if candidate in BRAND_IDS:
+            return candidate
+        alias = _ALIASES.get(candidate)
+        if alias and alias in BRAND_IDS:
+            return alias
+        return ''
+
+    found = _resolve(s)
+    if found:
+        return found
+
+    parts = s.split('-')
+    while len(parts) > 1:
+        parts.pop()
+        prefix = '-'.join(parts)
+        found = _resolve(prefix)
+        if found:
+            return found
     return ''
